@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Monotributo - Lucila Stepanosky</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 40px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+        h2 {
+            color: #0056b3;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #0056b3;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #003d80;
+        }
+        .resultado {
+            font-weight: bold;
+            margin-top: 20px;
+            color: #333;
+        }
+        .contacto {
+            margin-top: 30px;
+            font-size: 14px;
+        }
+        .contacto a {
+            display: block;
+            text-decoration: none;
+            color: #0056b3;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>¿Debés pasarte a Responsable Inscripto?</h2>
+        <label for="facturacion">Ingresá tu facturación anual:</label>
+        <input type="number" id="facturacion" placeholder="Ej: 9500000" required>
+
+        <label for="tipoActividad">Seleccioná tu tipo de actividad:</label>
+        <select id="tipoActividad">
+            <option value="servicios">Servicios</option>
+            <option value="productos">Venta de productos</option>
+        </select>
+
+        <button onclick="calcular()">Calcular</button>
+
+        <p class="resultado" id="resultado"></p>
+
+        <div class="contacto">
+            <p>📞 Contactame para asesoramiento:</p>
+            <a href="https://wa.me/5492923572318" target="_blank">📲 WhatsApp: 2923-572318</a>
+            <a href="https://www.instagram.com/contadora_ls" target="_blank">📸 Instagram: @contadora_ls</a>
+        </div>
+    </div>
+
+    <script>
+        function calcular() {
+            let facturacion = parseFloat(document.getElementById("facturacion").value);
+            let tipoActividad = document.getElementById("tipoActividad").value;
+            
+            let limiteServicios = 9000000;  
+            let limiteProductos = 13500000; 
+
+            let resultadoTexto = "";
+
+            if (isNaN(facturacion) || facturacion <= 0) {
+                resultadoTexto = "⚠️ Por favor, ingresá un monto válido.";
+            } else if ((tipoActividad === "servicios" && facturacion > limiteServicios) || 
+                       (tipoActividad === "productos" && facturacion > limiteProductos)) {
+                resultadoTexto = "🚨 Debés pasarte a Responsable Inscripto. Contactame y te ayudo con el proceso.";
+            } else {
+                resultadoTexto = "✅ Todavía podés seguir en Monotributo. Pero si seguís creciendo, revisemos tu caso.";
+            }
+
+            document.getElementById("resultado").innerText = resultadoTexto;
+        }
+    </script>
+
+</body>
+</html>
